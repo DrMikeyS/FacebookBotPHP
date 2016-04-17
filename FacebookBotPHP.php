@@ -6,11 +6,7 @@ class facebookBot {
     public static $postData;
     public static $token;
 
-    function __construct() {
-        $this->get = isset($_GET) ? $_GET : null;
-        $this->postData = preg_replace('/"id":(\d+)/', '"id":"$1"', file_get_contents('php://input'));
-    }
-
+    
     public static function verifyWebsite() {
         
         if (isset(self::$get['verify_token'])) {
@@ -30,7 +26,7 @@ class facebookBot {
     }
 
     public static function getSender() {
-        $output = json_decode(self::$postData);
+        $output = json_decode(preg_replace('/"id":(\d+)/', '"id":"$1"',self::$postData ));
         return $output->entry[0]->messaging[0]->sender->id;
     }
 

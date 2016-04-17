@@ -15,6 +15,8 @@ To get going just include the class file FacebookBotPHP.php into your app and fo
 <?php
 
 include 'FacebookBotPHP.php';
+facebookBot::$postData = file_get_contents('php://input');
+facebookBot::$get = $_GET;
 
 facebookBot::$token = '';
 witAI::$token = '';
