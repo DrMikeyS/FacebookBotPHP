@@ -2,9 +2,9 @@
 
 class facebookBot {
 
-    public $get;
-    public $postData;
-    public $token;
+    public static $get;
+    public static $postData;
+    public static $token;
 
     function __construct() {
         $this->get = isset($_GET) ? $_GET : null;
@@ -12,9 +12,10 @@ class facebookBot {
     }
 
     public static function verifyWebsite() {
-        $verify_token = $this->get['verify_token'];
-        if (isset($verify_token)) {
-            $challenge = $this->get['hub_challenge'];
+        
+        if (isset(self::$get['verify_token'])) {
+            $verify_token = self::$get['verify_token'];
+            $challenge = self::$get['hub_challenge'];
             if ($verify_token == "verification_token") {
                 print $challenge;
             } elseif ($verify_token != "verification_token") {
@@ -24,13 +25,12 @@ class facebookBot {
     }
 
     public static function getMessage() {
-        $output = json_decode($this->postData);
+        $output = json_decode(self::$postData);
         return $output->entry[0]->messaging[0]->message->text;
     }
 
     public static function getSender() {
-        
-        $output = json_decode($this->postData);
+        $output = json_decode(self::$postData);
         return $output->entry[0]->messaging[0]->sender->id;
     }
 
@@ -55,7 +55,7 @@ class facebookBot {
                 "Accept: application/json\r\n"
             )
         );
-        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->token;
+        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . self::$token;
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         return $json;
@@ -76,7 +76,7 @@ class facebookBot {
                 "Accept: application/json\r\n"
             )
         );
-        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->token;
+        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . self::$token;
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         return $json;
@@ -86,10 +86,10 @@ class facebookBot {
 
 class witAI {
 
-    public $token;
+    public static $token;
 
     function getWitAIResponse($q) {
-        $access_token = $this->token;
+        $access_token = self::$token;
 
         $options = array(
             'http' => array(
