@@ -4,6 +4,11 @@ A few simple PHP classes to help you quickly build an app for [Facebooks Messeng
 
 The classes also offer a simple wrapper for sending requests to [Wit.AI](https://wit.ai/) to help deal with natural language requests.
 
+##Install
+
+To get going just include the class file FacebookBotPHP.php into your app and follow the code below. You'll also need to set your access tokens for Facebook and Wit.AI, you can get them from their development consoles.
+
+
 ##Sample code
 
 ```
