@@ -1,5 +1,7 @@
 <?php
 
+facebookBot::$postData = file_get_contents('php://input');
+facebookBot::$get = $_GET;
 class facebookBot {
 
     public static $get;

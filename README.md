@@ -1,6 +1,6 @@
 # FacebookBotPHP
 
-A few simple PHP classes to help you quickly build an app for [Facebooks Messenger API](https://developers.facebook.com/docs/messenger-platform/quickstart). 
+A few simple PHP classes to help you quickly build an app for [Facebooks Messenger Bot API](https://developers.facebook.com/docs/messenger-platform/quickstart). 
 
 The classes also offer a simple wrapper for sending requests to [Wit.AI](https://wit.ai/) to help deal with natural language requests.
 
@@ -15,8 +15,6 @@ To get going just include the class file FacebookBotPHP.php into your app and fo
 <?php
 
 include 'FacebookBotPHP.php';
-facebookBot::$postData = file_get_contents('php://input');
-facebookBot::$get = $_GET;
 
 facebookBot::$token = '';
 witAI::$token = '';
