@@ -29,7 +29,9 @@ $recievedMessage = facebookBot::getMessage();
 $recievedMessageSender =  facebookBot::getSender();
 
 //Send a simple response
-facebookBot::sendMessage($recievedMessageSender, "Hey, thanks for getting in touch");
+if(recievedMessage){  //IMPORTANT: this if statement prevents an infinite loop as Facebook sends a receipt message for every message you send
+   facebookBot::sendMessage($recievedMessageSender, "Hey, thanks for getting in touch");
+}
 
 //Send a more complex message  - the Elements pointer should be an array of objects with the format as below
 $elements = [
